@@ -1,0 +1,7 @@
+%li{:class => cycle("odd", "even")}
+  .controls
+    = link_to "show", group
+    = link_to "edit", edit_group_path(group)
+    = link_to "destroy", group, :confirm => "Are you sure?", :method => :delete
+  %b= group.name
+  = " - #{group.description}"

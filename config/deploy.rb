@@ -2,6 +2,7 @@ set :application, "sportsleisure.com"
 set :directory, "users.mazondo.com"
 set :repository,  "git@github.com:mazondo/cas-user-management.git"
 set :user, "adeployeruser"
+set :bundle_cmd, "/opt/ruby-enterprise-1.8.7-20090928/bin/bundle"
 # needed for sudo, can remove runner later once the bottom script is confirmed to work
 # set :runner, "adeployeruser"
 set :port, 40000
@@ -46,17 +47,19 @@ namespace :deploy do
     run "touch #{current_path}/tmp/restart.txt"
   end
 
-#  desc "Initial setup of the shared_path."
-#  task :setup_shared do
-#    run "mkdir -p #{shared_path}/config #{shared_path}/assets"
-#  end
+  desc "Initial setup of the shared_path."
+  task :setup_shared do
+    run "mkdir -p #{shared_path}/config #{shared_path}/assets"
+  end
 
-#  desc "Gets the shared_path ready for use with the release."
-#  task :prepare_shared do
-#    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
-#    run "ln -nfs #{shared_path}/config/database.yml "+
-#              "#{release_path}/config/database.yml"
-#  end
+  desc "Gets the shared_path ready for use with the release."
+  task :prepare_shared do
+    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
+    run "ln -nfs #{shared_path}/config/database.yml "+
+              "#{release_path}/config/database.yml"
+  end
 end
 # after 'deploy:setup', 'deploy:setup_shared'
 # before 'deploy:finalize_update', 'deploy:prepare_shared'
+
+require "bundler/capistrano"
