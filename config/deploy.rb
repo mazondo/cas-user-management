@@ -3,6 +3,8 @@ set :directory, "users.mazondo.com"
 set :repository,  "git@github.com:mazondo/cas-user-management.git"
 set :user, "adeployeruser"
 set :bundle_cmd, "/opt/ruby-enterprise-1.8.7-20090928/bin/bundle"
+#remove --deployment so that we don't include gemfile.lock because of windows -> linux issues
+set :bundle_flags, "--quiet"
 
 # needed for sudo, can remove runner later once the bottom script is confirmed to work
 # set :runner, "adeployeruser"

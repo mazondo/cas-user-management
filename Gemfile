@@ -27,7 +27,6 @@ gem 'haml'
 gem 'authlogic'
 gem 'mysql2'
 gem 'rubycas-client'
-gem 'activerecord-mysql2-adapter'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
