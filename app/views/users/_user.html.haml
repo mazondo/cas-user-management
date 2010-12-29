@@ -1,0 +1,10 @@
+%li
+  .controls
+    = link_to "edit", edit_user_path(user)
+    = link_to "destroy", user_path(user), :method => :destroy, :confirm => "are you sure?"
+  %b= user.username
+  = " - " + user.full_name
+  %p= user.description
+  Groups:
+  %span= user.easy_groups
+  
