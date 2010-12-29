@@ -39,6 +39,9 @@ task :after_update_code, :roles => [:app, :db] do
   # fix permissions
   run "chmod -R +x #{release_path}/script/*"
   run "chown -R #{user} #{release_path}/script/*"
+  run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
+  run "ln -nfs #{shared_path}/config/database.yml "+
+              "#{release_path}/config/database.yml"
 end
 
 namespace :deploy do
