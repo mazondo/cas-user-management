@@ -3,6 +3,7 @@ set :directory, "users.mazondo.com"
 set :repository,  "git@github.com:mazondo/cas-user-management.git"
 set :user, "adeployeruser"
 set :bundle_cmd, "/opt/ruby-enterprise-1.8.7-20090928/bin/bundle"
+
 # needed for sudo, can remove runner later once the bottom script is confirmed to work
 # set :runner, "adeployeruser"
 set :port, 40000

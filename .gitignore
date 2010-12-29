@@ -5,4 +5,3 @@ tmp/**/*
 config/database.yml
 Capfile
 config/deploy.rb
-Gemfile.lock
