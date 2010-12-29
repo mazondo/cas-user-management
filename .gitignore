@@ -4,6 +4,7 @@ log/*.log
 tmp/**/*
 config/database.yml
 Capfile
+Gemfile.lock
 config/deploy.rb
 config/initializers/rubycas.rb
 
