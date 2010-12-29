@@ -39,5 +39,15 @@ ul.users {
 	.controls {float:right;}
 	p {margin:5px 0;font-style:italic;color: $darkgray;}
 	span {color:$darkgray;font-style:italic;}
-	li {}
+	li {padding:10px;margin:5px 0;}
+	li.even {background:$gray;}
+}
+
+ul.groups {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	.controls {float:right;}
+	li {padding:10px;margin:5px 0;}
+	li.even {background:$gray;}
 }

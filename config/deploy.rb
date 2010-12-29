@@ -1,22 +1,62 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+set :application, "sportsleisure.com"
+set :directory, "users.mazondo.com"
+set :repository,  "git@github.com:mazondo/cas-user-management.git"
+set :user, "adeployeruser"
+# needed for sudo, can remove runner later once the bottom script is confirmed to work
+# set :runner, "adeployeruser"
+set :port, 40000
 
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+default_run_options[:pty] = true
+set :scm, "git"
+set :scm_passphrase, ""
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+ssh_options[:forward_agent] = true
+set :branch, "master"
 
-# If you are using Passenger mod_rails uncomment this:
-# if you're still using the script/reapear helper you will need
-# these http://github.com/rails/irs_process_scripts
+# If you aren't deploying to /u/apps/#{application} on the target
+# servers (which is the default), you can specify the actual location
+# via the :deploy_to variable:
+set :deploy_to, "/var/www/#{directory}"
 
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+
+
+# If you aren't using Subversion to manage your source code, specify
+# your SCM below:
+# set :scm, :subversion
+
+role :app, application
+role :web, application
+role :db, application , :primary => true
+
+# other options
+ssh_options[:keys] = %w(/home/adeployeruser/.ssh/id_rsa) # If you are using ssh_keys
+set :chmod755, "app config db lib public vendor script script/* public/disp* script/process script/process/*"
+set :use_sudo, false
+set :rake, "/opt/ruby-enterprise-1.8.7-20090928/bin/rake"
+
+task :after_update_code, :roles => [:app, :db] do
+  # fix permissions
+  run "chmod -R +x #{release_path}/script/*"
+  run "chown -R #{user} #{release_path}/script/*"
+end
+
+namespace :deploy do
+  desc "Restart passenger."
+  task :restart do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+
+#  desc "Initial setup of the shared_path."
+#  task :setup_shared do
+#    run "mkdir -p #{shared_path}/config #{shared_path}/assets"
+#  end
+
+#  desc "Gets the shared_path ready for use with the release."
+#  task :prepare_shared do
+#    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
+#    run "ln -nfs #{shared_path}/config/database.yml "+
+#              "#{release_path}/config/database.yml"
+#  end
+end
+# after 'deploy:setup', 'deploy:setup_shared'
+# before 'deploy:finalize_update', 'deploy:prepare_shared'

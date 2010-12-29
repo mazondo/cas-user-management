@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
 	has_many :users, :through => :user_groups
 	
 	after_update :update_all_easy_groups
+	after_destroy :update_all_easy_groups
 	
 	def update_all_easy_groups
 		User.update_all_easy_groups

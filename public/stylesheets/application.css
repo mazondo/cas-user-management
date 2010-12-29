@@ -42,3 +42,20 @@ ul.users {
   ul.users span {
     color: #696969;
     font-style: italic; }
+  ul.users li {
+    padding: 10px;
+    margin: 5px 0; }
+  ul.users li.even {
+    background: #e8e8e8; }
+
+ul.groups {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+  ul.groups .controls {
+    float: right; }
+  ul.groups li {
+    padding: 10px;
+    margin: 5px 0; }
+  ul.groups li.even {
+    background: #e8e8e8; }
