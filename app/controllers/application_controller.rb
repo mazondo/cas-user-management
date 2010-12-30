@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
   
   def allowed_to_edit?
-  	if session[:cas_extra_attributes][:easy_groups].include? "user_management"
+  	if session[:cas_extra_attributes] && session[:cas_extra_attributes][:easy_groups].include? "user_management"
   		return true
   	end
   	return false
