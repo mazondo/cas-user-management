@@ -10,7 +10,7 @@
 			.header
 				.nav
 					%ul
-						%li= "Hi #{session[:cas_user]}!"
+						%li= "Hi #{username}!"
 						%li= link_to "Users", users_path
 						%li= link_to "Groups", groups_path
 				%h1 CAS User Management

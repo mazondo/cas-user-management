@@ -2,21 +2,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter CASClient::Frameworks::Rails::Filter
   before_filter :require_user
-  helper_method :allowed_to_view?, :allowed_to_edit?
+  helper_method :allowed_to_view?, :allowed_to_edit?, :username
   # before_filter :raise_error
 
-  def allowed_to_view?
-  	if session[:cas_extra_attributes] && session[:cas_extra_attributes][:easy_groups].include?("user_management")
-  		return true
-  	end
-  	return false
+    def allowed_to_view?
+  	return true if all_groups && (all_groups & groups_allowed_to_view)
   end
   
   def allowed_to_edit?
-  	if session[:cas_extra_attributes] && session[:cas_extra_attributes][:easy_groups].include?("user_management")
-  		return true
-  	end
-  	return false
+  	return true if all_groups && (all_groups & groups_allowed_to_edit)
   end
   
   def require_user
@@ -25,7 +19,29 @@ class ApplicationController < ActionController::Base
   	end
   end
   
-  def raise_error
-  	raise.error
+  private
+  
+  ################################BEGIN Who can do what?########################################
+  def groups_allowed_to_view
+  	["user_management", "sudo"]
   end
+  
+  def groups_allowed_to_edit
+  	["user_management", "sudo"]
+  end
+  
+  def all_groups
+  	return @all_groups if defined?(@all_groups)
+  	if session[:cas_extra_attributes] && session[:cas_extra_attributes][:easy_groups]
+  		@all_groups = session[:cas_extra_attributes][:easy_groups].split(", ")
+  	end
+  end
+  
+  def username
+  	return @username if defined?(@username)
+  	if session[:cas_user]
+  		@username = session[:cas_user]
+  	end
+  end
+  #############################END who can do what?#####################################
 end
