@@ -1,9 +1,25 @@
 development:
   cas_base_url: https://your-cas-server.com:port-number
   cas_user_management_url: localhost:3000
-  password_resets_from_address: your-email@your-domain.com
+  
+  ##### Email Settings #####
+  
+  email_from: your-email@your-domain.com
+  email_smtp_address: your-smtp-server
+  email_port: 25
+  email_domain: your-domain
+  email_username: your-username
+  email_password: your-password
   
 production:
   cas_base_url: https://your-cas-server.com:port-number
   cas_user_management_url: your-user-management-site.com
-  password_resets_from_address: your-email@your-domain.com
+  
+  ##### Email Settings #####
+  
+  email_from: your-email@your-domain.com
+  email_smtp_address: your-smtp-server
+  email_port: 25
+  email_domain: your-domain
+  email_username: your-username
+  email_password: your-password
