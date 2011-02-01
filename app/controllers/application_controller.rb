@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter CASClient::Frameworks::Rails::Filter
+  before_filter CASClient::Frameworks::Rails::Filter, :unless => :skip_cas
   before_filter :require_user
-  helper_method :allowed_to_view?, :allowed_to_edit?, :username
+  helper_method :allowed_to_view?, :allowed_to_edit?, :username, :require_no_user
   # before_filter :raise_error
 
     def allowed_to_view?
@@ -37,11 +37,24 @@ class ApplicationController < ActionController::Base
   	end
   end
   
+  def require_no_user
+  	if username
+  		raise "Sorry, you must be logged out to view this page!"
+  	else
+  		true
+  	end
+  end
+  
   def username
   	return @username if defined?(@username)
   	if session[:cas_user]
   		@username = session[:cas_user]
   	end
+  end
+  
+  def skip_cas
+  	#we use this to decide when we should skip cas login on a page.  for example, on the password resets we can just set this to true.  This is a workaround for the skip_before_filter issue with rails 3
+  		false
   end
   #############################END who can do what?#####################################
 end

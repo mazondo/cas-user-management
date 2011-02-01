@@ -1,0 +1,11 @@
+%h1 Password Reset
+%p You're almost done!  Just enter in your new password and we'll take care of it for you!
+= form_for @user, :url => password_reset_path, :method => :put do |f|
+	%p
+		= f.label :password
+		= f.password_field :password
+	%p
+		= f.label :password_confirmation
+		= f.password_field :password_confirmation
+	= f.submit "Change My Password"
+	

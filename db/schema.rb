@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101229031531) do
+ActiveRecord::Schema.define(:version => 20110201204051) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(:version => 20101229031531) do
     t.string   "password_salt"
     t.string   "crypted_password"
     t.string   "persistence_token"
+    t.string   "perishable_token",  :default => "", :null => false
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
 
 end

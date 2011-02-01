@@ -1,0 +1,9 @@
+development:
+  cas_base_url: https://your-cas-server.com:port-number
+  cas_user_management_url: localhost:3000
+  password_resets_from_address: your-email@your-domain.com
+  
+production:
+  cas_base_url: https://your-cas-server.com:port-number
+  cas_user_management_url: your-user-management-site.com
+  password_resets_from_address: your-email@your-domain.com

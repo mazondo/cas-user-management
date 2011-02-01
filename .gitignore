@@ -7,4 +7,5 @@ Capfile
 Gemfile.lock
 config/deploy.rb
 config/initializers/rubycas.rb
+config/config.yml
 

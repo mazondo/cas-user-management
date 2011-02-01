@@ -1,5 +1,6 @@
 CasUserManagement::Application.routes.draw do
   resources :groups
+  resources :password_resets
 
   resources :users
   

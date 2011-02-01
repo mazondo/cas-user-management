@@ -29,5 +29,10 @@ class User < ActiveRecord::Base
 	def full_name
 		first_name + " " + last_name
 	end
+	
+	def deliver_password_reset_instructions!  
+		reset_perishable_token!  
+		Notifier.password_reset_instructions(self).deliver
+	end 
 			
 end

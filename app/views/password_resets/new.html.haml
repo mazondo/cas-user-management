@@ -1,0 +1,6 @@
+%h1 Password Reset
+%p Lost your password?  Not a problem.  Just enter your email address and we'll get you squared away.
+=form_tag password_resets_path do
+	= label_tag :email, "Email Address"
+	= text_field_tag :email
+	= submit_tag "Reset My Password"
