@@ -3,6 +3,8 @@ CasUserManagement::Application.routes.draw do
 
   resources :users
   
+  match 'logout', :to => 'user_sessions#logout', :as => :logout
+  
   root :to => 'users#index'
 
   # The priority is based upon order of creation:
