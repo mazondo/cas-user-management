@@ -51,3 +51,16 @@ ul.groups {
 	li {padding:10px;margin:5px 0;}
 	li.even {background:$gray;}
 }
+
+.flash-warning {
+	border:1px solid red;
+	color:red;
+	padding:5px;
+	font-weight:bold;
+}
+
+.flash-notice {
+border:1px solid green;
+color:green;
+padding:5px;
+font-weight:bold;}

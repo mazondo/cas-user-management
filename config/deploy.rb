@@ -45,8 +45,8 @@ task :after_update_code, :roles => [:app, :db] do
   run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
   run "ln -nfs #{shared_path}/config/database.yml "+
               "#{release_path}/config/database.yml"
-  run "ln -nfs #{shared_path}/config/config/config.yml "+
-              "#{release_path}/config/config/config.yml"
+  run "ln -nfs #{shared_path}/config/config.yml "+
+              "#{release_path}/config/config.yml"
 end
 
 namespace :deploy do

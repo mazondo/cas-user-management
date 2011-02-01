@@ -59,3 +59,15 @@ ul.groups {
     margin: 5px 0; }
   ul.groups li.even {
     background: #e8e8e8; }
+
+.flash-warning {
+  border: 1px solid red;
+  color: red;
+  padding: 5px;
+  font-weight: bold; }
+
+.flash-notice {
+  border: 1px solid green;
+  color: green;
+  padding: 5px;
+  font-weight: bold; }
