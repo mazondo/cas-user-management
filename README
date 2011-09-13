@@ -1,3 +1,7 @@
 This will eventually be a user management system for rubycas server instances.
 
-Just an idea right now, not fully functional by any stretch of the imagination.
+It allows you to create/manage users and user groups.
+
+user groups are at the heart of the app, as they are what you'll use in all your other apps to determine what users are and aren't allowed to do.
+
+More info coming...
