@@ -1,7 +1,7 @@
 %li{:class => cycle("odd", "even")}
   .controls
     = link_to "edit", edit_user_path(user)
-    = link_to "delete", user_path(user), :method => :destroy, :confirm => "are you sure?"
+    = link_to "delete", user_path(user), :method => :delete, :confirm => "are you sure?"
   %b= user.username
   = " - " + user.full_name
   %p= user.description
