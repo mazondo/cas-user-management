@@ -25,7 +25,7 @@ end
 
 gem 'haml'
 gem 'authlogic'
-gem 'mysql2'
+gem 'mysql2', '~> 0.2.7'
 gem 'rubycas-client'
 
 # Bundle gems for the local environment. Make sure to
